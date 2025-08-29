@@ -34,3 +34,20 @@ def main():
             lambda v: v.strip() != "",
             "Track cannot be empty!"
         )
+        participant = {
+            "name": name,
+            "age": int(age),
+            "phone": phone,
+            "track": track
+        }
+        file_ops.save_participant_informations(csv_path, participant)
+        print(f"\n Saved {name} successfully!\n")
+        more = input("Add another participant? (yes/no): ").lower()
+        if more != "yes":
+            break
+    all_participants = file_ops.load_participant_informations(csv_path)
+    print(f"\n Total participants saved: {len(all_participants)}")
+    for p in all_participants:
+        print(f"- {p['name']} {p['age']} yrs {p['phone']}, Track: {p['track']}")
+if __name__ == "__main__":
+    main()
